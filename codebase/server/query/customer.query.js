@@ -29,4 +29,6 @@ ON
 WHERE customer_id = ?;`,
 	selectCustomerByid: `SELECT * FROM customer_identifier WHERE customer_id = ? ; `,
 
+    deleteCustomerQuery: `DELETE FROM customer_identifier WHERE customer_id = ? ; `,
+
 };

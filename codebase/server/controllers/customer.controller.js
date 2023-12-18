@@ -86,7 +86,7 @@ const customerController = {
 				return res.status(200).json({
 					success: "true",
 					data: results,
-				});
+				}); 
 			}
 		});
 	},
@@ -190,6 +190,7 @@ const customerController = {
             });
         } else {
             if (!results.length) {
+				console.log(results.length)
                 return res.status(400).json({
                     success: false,
                     message: "Customer does not exist with this ID.",

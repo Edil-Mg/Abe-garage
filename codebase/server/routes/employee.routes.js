@@ -7,4 +7,4 @@ employeeRout.post('/api/employee', employeeController.addemployee);
 employeeRout.get('/api/all-employee', employeeController.allEmployee);
 
 
-export default employeeRout;
+export default employeeRout; 
