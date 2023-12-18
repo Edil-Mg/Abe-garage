@@ -222,6 +222,21 @@ const customerService = {
 			}
 		);
 	},
+
+	deletesinglecustomer: (customer_id, callback) => {
+		conn.query(
+			customerQuery.deleteCustomerQuery,
+			[customer_id],
+			(error, result, fields) => {
+				if (error) {
+					console.log(error);
+					return callback(error);
+				} else {
+					return callback(null, result);
+				}
+			}
+		);
+	},
 };
 
 export default customerService;

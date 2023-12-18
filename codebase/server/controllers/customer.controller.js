@@ -171,7 +171,50 @@ const customerController = {
 		});
 	},
 
-	// prepare updated data
+	deletesinglecustomer: async (req, res, next) => {
+		const customer_id = req.params.id;
+    // Check if customer_id is provided
+    if (!customer_id) {
+        return res.status(400).json({
+            success: false,
+            message: "Customer ID is required for deletion.",
+        });
+    }
+
+    // Check if customer exists
+    customerService.checkCustomerById(customer_id, (err, results) => {
+        if (err) {
+            return res.status(500).json({
+                success: false,
+                message: "Database connection error during customer deletion.",
+            });
+        } else {
+            if (!results.length) {
+                return res.status(400).json({
+                    success: false,
+                    message: "Customer does not exist with this ID.",
+                });
+            } else {
+                // Delete customer
+                customerService.deletesinglecustomer(customer_id, (err, results) => {
+                    if (err) {
+                        return res.status(500).json({
+                            success: false,
+                            message: "Database connection error during customer deletion.",
+                        });
+                    } else {
+                        return res.status(200).json({
+                            success: true,
+                            message: "Customer deleted successfully.",
+                        });
+                    }
+                });
+            }
+        }
+    });
+},
+
 };
+
 
 export default customerController;
